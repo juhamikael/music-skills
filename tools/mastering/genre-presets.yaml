@@ -994,6 +994,14 @@ genres:
     target_lufs: -14.0
     cut_highmid: -1.0
     cut_highs: 0
+  uplifting-trance:
+    target_lufs: -14.0
+    cut_highmid: -1.0
+    cut_highs: 0
+  progressive-trance:
+    target_lufs: -14.0
+    cut_highmid: -1.0
+    cut_highs: 0
   happy-hardcore:
     target_lufs: -12.0
     cut_highmid: -2.0

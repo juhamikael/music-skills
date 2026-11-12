@@ -6,6 +6,9 @@ This project uses [Conventional Commits](https://conventionalcommits.org/) and [
 
 ## [Unreleased]
 
+### Added
+- **Uplifting trance and progressive trance have genre guides of their own** — `genres/uplifting-trance/` (136-142 BPM, one lead melody held back for a long breakdown and released in the drop) and `genres/progressive-trance/` (124-132 BPM, gradual layering, subtle breakdowns, no single climax). Until now both were one row each in the trance guide, so a track got trance's general 128-150 BPM range and structure. Each guide has lyric conventions with a `Density/pacing (Suno)` line, sub-styles, Suno prompt keywords with notes on what to leave out, and a radio-edit structure, since their original mixes run longer than one generation. Both are in the genre index, the Suno genre list and the mastering presets (same values as the other trance genres), and the trance guide links to them. The index count is corrected to the 389 guides that exist.
+
 ### Fixed
 - **The lyric-writer's line limits no longer contradict each other** — a verse had three limits (the Section Length Limits tables, the Suno Verse Length table and the genre README), and they disagreed for metal, prog rock, blues, pop and electronic, with two of them marked hard fail. The genre README's `Density/pacing (Suno)` line is now the verse limit, the craft-reference tables are the fallback and cover the other sections, both tables carry the same numbers, and every Max Lines value is one number instead of a range. Blues (3-line AAB) and progressive rock (up to 12) have rows of their own.
 - **An 8-line rap verse is no longer a red flag by default** — "8-line verse under 100 BPM" flagged the hip-hop README's own default (8 lines at 85-95 BPM). The rule now applies to sung genres, and the BPM fallback table's ranges no longer overlap at 94.
