@@ -27,12 +27,26 @@ from handlers._shared import (
     # _resolve_audio_dir accessed via _helpers for patch compatibility
     _safe_json,
 )
-from handlers.processing import _album_stages, _helpers
-from tools.mastering.ceiling_guard import (
-    compute_overshoots as _ceiling_guard_compute_overshoots,
-)
+from handlers.processing import _helpers
+
+# _album_stages and tools.mastering.* import numpy, scipy and soundfile at
+# module level. They are loaded inside the functions that need them, after
+# _helpers._check_mastering_deps(), so the MCP server starts (and the lyric,
+# album and Suno tools work) without the mastering dependencies installed.
 
 logger = logging.getLogger(__name__)
+
+
+def _ceiling_guard_compute_overshoots(
+    tracks: list[dict[str, Any]],
+) -> dict[str, Any]:
+    """Lazy wrapper for tools.mastering.ceiling_guard.compute_overshoots.
+
+    Kept as a module attribute so tests can monkeypatch it.
+    """
+    from tools.mastering.ceiling_guard import compute_overshoots
+
+    return compute_overshoots(tracks)
 
 
 async def analyze_audio(album_slug: str, subfolder: str = "") -> str:
@@ -230,6 +244,8 @@ def _refresh_playlist(album_slug: str, audio_dir: Path) -> str | None:
     Returns its path, or None when none was written (nothing mastered, or the
     write failed, which is logged and never fails the mastering call).
     """
+    from handlers.processing import _album_stages
+
     stage = _album_stages.write_album_playlist(album_slug, audio_dir)
     if stage["status"] == "warn":
         logger.warning("Could not write the album playlist: %s", stage["error"])
@@ -764,6 +780,18 @@ async def master_album(
                 "reason": "freeze_signature and new_anchor are mutually exclusive",
             },
         })
+
+    dep_err = _helpers._check_mastering_deps()
+    if dep_err:
+        return _safe_json({
+            "album_slug": album_slug,
+            "stage_reached": "pre_flight",
+            "stages": {"pre_flight": {"status": "fail", "detail": dep_err}},
+            "failed_stage": "pre_flight",
+            "failure_detail": {"reason": dep_err},
+        })
+
+    from handlers.processing import _album_stages
 
     loop = asyncio.get_running_loop()
 
