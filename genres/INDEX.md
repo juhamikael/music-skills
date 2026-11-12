@@ -1,6 +1,6 @@
 # Genre Index
 
-A searchable, categorized guide to all 386 genre documentation files in this repository. Use this index to find the right genre for your album or discover genres you might want to explore.
+A searchable, categorized guide to all 389 genre documentation files in this repository. Use this index to find the right genre for your album or discover genres you might want to explore.
 
 ---
 
@@ -167,6 +167,8 @@ A searchable, categorized guide to all 386 genre documentation files in this rep
 | **Vocal Trance** | Euphoric trance built around powerful sung vocals, emotional melodies, and uplifting breakdowns; 136-142 BPM | [README](vocal-trance/README.md) |
 | **Goa Trance** | Psychedelic electronic music from Goa, India; layered acid lines, Eastern textures, and spiritual atmosphere; 140-150 BPM | [README](goa-trance/README.md) |
 | **Psychedelic Trance** | High-energy, hypnotic electronic dance music with rolling basslines, layered synthesizers, and psychedelic textures; 138-150 BPM | [README](psychedelic-trance/README.md) |
+| **Uplifting Trance** | Anthem-driven melodic trance; one soaring lead held back for a long breakdown and released in the drop; 136-142 BPM | [README](uplifting-trance/README.md) |
+| **Progressive Trance** | Patient, hypnotic trance built on gradual layering and subtle breakdowns instead of one big drop; 124-132 BPM | [README](progressive-trance/README.md) |
 | **Happy Hardcore** | High-BPM euphoric dance music with pitched-up vocals, piano stabs, and relentless energy; 160-180 BPM | [README](happy-hardcore/README.md) |
 | **Dark Ambient** | Atmospheric drone-based music exploring darkness, dread, and vast empty spaces; no fixed BPM | [README](dark-ambient/README.md) |
 | **Dub Techno** | Hypnotic minimal techno filtered through dub reggae's echo chambers; deep chords, tape delay, hiss; 120-130 BPM | [README](dub-techno/README.md) |
@@ -1140,4 +1142,4 @@ These genres commonly blend well together or have natural crossover potential:
    - Reference artists and albums
    - Suno prompt keywords for AI generation
 
-**Total genres documented: 386**
+**Total genres documented: 389**

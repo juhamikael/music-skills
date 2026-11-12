@@ -6,6 +6,9 @@ This project uses [Conventional Commits](https://conventionalcommits.org/) and [
 
 ## [Unreleased]
 
+### Added
+- **Uplifting trance and progressive trance have genre guides of their own** — `genres/uplifting-trance/` (136-142 BPM, one lead melody held back for a long breakdown and released in the drop) and `genres/progressive-trance/` (124-132 BPM, gradual layering, subtle breakdowns, no single climax). Until now both were one row each in the trance guide, so a track got trance's general 128-150 BPM range and structure. Each guide has lyric conventions with a `Density/pacing (Suno)` line, sub-styles, Suno prompt keywords with notes on what to leave out, and a radio-edit structure, since their original mixes run longer than one generation. Both are in the genre index, the Suno genre list and the mastering presets (same values as the other trance genres), and the trance guide links to them. The index count is corrected to the 389 guides that exist.
+
 ## [0.104.0] - 2026-11-10
 
 ### Added

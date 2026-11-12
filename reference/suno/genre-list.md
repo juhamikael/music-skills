@@ -13,9 +13,9 @@ Future Bass, Future Garage, Future House, Gabber, Glitch, Glitch Hop,
 Glitch Pop, Goa Trance, Happy Hardcore, Hardstyle, House, Hyperpop,
 IDM (Intelligent Dance Music), Industrial, Jungle, Minimal Techno,
 Moombahton, Neurofunk, Nu Disco, Post-Disco, Post-Dubstep,
-Progressive House, Psybient, Psychedelic Trance, Rave, Space Disco,
+Progressive House, Progressive Trance, Psybient, Psychedelic Trance, Rave, Space Disco,
 Synthwave, Tech House, Techno, Trance, Trip Hop, Tropical House,
-UK Funky, UK Garage, Vaporwave, Vocal House, Vocal Trance, Witch House
+UK Funky, UK Garage, Uplifting Trance, Vaporwave, Vocal House, Vocal Trance, Witch House
 ```
 
 ## Hip Hop & Rap
