@@ -19,12 +19,12 @@ I felt so empty and alone
 **Strong (shows through action and imagery):**
 ```
 Found her coffee mug still in the sink
-Poured it out but couldn't watch it drain
-Her keys still hanging by the door
-I keep forgetting she's not coming back
+Rinsed it twice and set it out to dry
+Her keys were hanging by the door
+I left the porch light on all night
 ```
 
-**Why it works**: The strong version uses concrete objects (mug, keys, door) and actions (poured, hanging, forgetting) that let listeners feel the emotion without being told what to feel.
+**Why it works**: The strong version uses concrete objects (mug, keys, door, porch light) and actions (rinsed, hanging, left the light on) that let listeners feel the emotion without being told what to feel. It also stays in one tense and keeps a rhyme on lines 2 and 4 (dry/night, a near rhyme), so showing instead of telling costs the verse nothing.
 
 ---
 
@@ -52,22 +52,20 @@ Stressed syllables must land on strong beats (1 and 3 in 4/4 time).
 
 ### Example 1: Multi-syllable Word
 
+Capitals mark where the beat falls when the line is sung to a steady da-DUM pulse.
+
 **Bad prosody (emphasis on wrong syllable):**
 ```
-I need to find my des-TIN-y
+a BIG moun-TAIN was IN my WAY
 ```
-Sung naturally, "destiny" stresses DES-ti-ny, not des-TIN-y.
+The beat falls on -TAIN, but the word is spoken MOUN-tain. The singer has to bend it.
 
-**Fixed:**
+**Fixed (reorder so the stressed syllable meets the beat):**
 ```
-I need to find my DES-ti-ny
-```
-Or restructure:
-```
-My DES-ti-ny is CALL-ing me
+a MOUN-tain STOOD there IN my WAY
 ```
 
-**Why it works**: Natural speech stress aligns with musical downbeats.
+**Why it works**: Natural speech stress aligns with the strong beats. Prosody is fixed by moving or changing words, never by respelling: the same words in the same order have the same problem however they are written.
 
 ---
 
@@ -113,11 +111,11 @@ The streets are cold, I walk alone
 No one around, just skin and bone
 
 [Verse 2]
-Found your old coat in the closet
-Still smells like smoke and home
+Your old coat's hanging by the door
+Still smells like smoke from years before
 ```
 
-**Why it works**: V2 introduces new detail (the coat), shifts emotional register (nostalgia), and advances the internal story.
+**Why it works**: V2 introduces new detail (the coat), shifts emotional register (nostalgia), and advances the internal story. It keeps V1's shape while it does so: the same couplet rhyme, the same tense and line length, so the two verses fit one melody.
 
 ---
 
@@ -165,12 +163,12 @@ This is where it all got its START
 Where it all got its START
 Where we found our heart
 ```
-"Start" appears in both — chorus loses impact.
+"Start" appears in both — chorus loses impact. So does "started" a line earlier: another form of the hook word gives it away just the same.
 
 **Fixed:**
 ```
 [Verse]
-We started something that will never end
+Two kids, one amp, a basement in the dark
 This is where we lit the spark
 
 [Chorus]
@@ -178,7 +176,7 @@ Where it all got its start
 Where we found our heart
 ```
 
-**Why it works**: "Spark" sets up "start" without stealing it. The chorus still lands fresh.
+**Why it works**: "Spark" sets up "start" without stealing it, and no form of the hook word appears before the chorus. The chorus still lands fresh.
 
 ---
 
@@ -246,11 +244,11 @@ Of losing you, it drives me quite insane
 
 **Fixed:**
 ```
-I feel the weight of losing you
-It's driving me insane
+I feel the pain of losing you
+Some nights I don't sleep through
 ```
 
-**Why it works**: Fewer words, same meaning, stronger impact.
+**Why it works**: Fewer words, same meaning, and the couplet still rhymes. Cutting filler is not a licence to drop the rhyme or to reach for a stock phrase ("driving me insane") in its place.
 
 ---
 
@@ -269,16 +267,11 @@ Of all the things we never talked
 
 **Fixed:**
 ```
-I walked into the darkest night
-We never talked — that wasn't right
+I walked the dark from end to end
+Rehearsing words I'd never send
 ```
 
-**Why it works**: Natural word order, rhyme still works. Or use a near-rhyme:
-
-```
-Into the night so dark I walked
-Thinking of words we'd never said
-```
+**Why it works**: Natural word order in both lines, and the rhyme still lands. Both lines had to change: keeping "Into the night so dark I walked" and repairing only its partner would leave the inversion in place.
 
 ---
 
@@ -316,13 +309,13 @@ No concrete details — could describe anything.
 
 **Fixed:**
 ```
-The phone lit up at 2 AM
-Your voice cracked on the line
+The phone lit up at two a.m.
+Your voice was thin across the line
 I sat down on the kitchen floor
-The dog just licked my hand
+And told the dog that we were fine
 ```
 
-**Why it works**: Specific details (2 AM, kitchen floor, dog) ground the universal experience of receiving bad news without stating "I got bad news."
+**Why it works**: Specific details (two a.m., kitchen floor, the dog) ground the universal experience of receiving bad news without stating "I got bad news."
 
 ---
 
@@ -341,8 +334,8 @@ Too many proper nouns that mean nothing to listeners.
 ```
 Remember running into him
 At the drugstore, late that night
-He said he heard the news at work
-Someone finally saw the light
+He said they'd finally let her go
+And stood there staring at the light
 ```
 
 **Why it works**: Specific enough to feel real, universal enough to resonate.
@@ -362,9 +355,11 @@ You threw away my love
 
 **Fixed:**
 ```
-I gave you all my heart
-You tore that love apart
+I gave you all my love
+You said it wasn't enough
 ```
+
+**Why it works**: Two different end words (love/enough, a near rhyme). Swapping in heart/apart would cure the self-rhyme with a pair as worn as the one in the next example.
 
 ---
 
@@ -383,7 +378,7 @@ You set my heart on fire
 Now I'm just ash and bone
 ```
 
-**Why it works**: Unexpected image (ash and bone) instead of predictable rhyme partner.
+**Why it works**: Unexpected image (ash and bone) instead of predictable rhyme partner. Where the genre's scheme needs this line to rhyme, keep the rhyme and look past the first partner that comes to mind (fire/wire, fire/choir) rather than leaving the line an orphan.
 
 ---
 
@@ -407,13 +402,19 @@ Everything I knew is burning, there's no turning back
 ```
 Six packed lines at 75 BPM — Suno will rush or compress.
 
-**Fixed (matches tempo):**
+**Fixed (matches tempo, same story):**
 ```
-[Verse]
-Slow night in the city
-Streetlights on the rain
-Nothing but the echo
-Of an empty train
+[Verse 1]
+Sirens down on Seventh Street
+Blue lights on the wall
+Through the alley, over fences
+Heartbeat and footfall
+
+[Verse 2]
+Breathless at the river's edge
+One look back, that's all
+Everything I knew is burning
+Watch the embers fall
 ```
 
-**Why it works**: Four short lines give the slow tempo room to breathe.
+**Why it works**: Four short lines give the slow tempo room to breathe, and nothing of the chase is lost: it is spread over two verses instead of crammed into one (spread, don't compress). Replacing the chase with a mood piece would have matched the tempo too, by throwing the song away.

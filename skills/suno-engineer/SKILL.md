@@ -146,23 +146,28 @@ Check for custom Suno preferences:
 ```
 [Intro]
 
-[Verse]
+[Verse 1 - quiet intimate]
 First line of lyrics here
 Second line of lyrics here
 
-[Chorus]
+[Chorus - building anthemic]
 Chorus lyrics here
 
 [Instrumental]
 
-[Outro]
+[Outro - fading]
+
+[End]
 ```
+
+Sung sections carry a Performance Cue after the dash (see § Section Tags are Critical). A section meant to be played, not sung, has a tag and nothing under it.
 
 **Rules**:
 - Use section tags for every section
 - Section tags only for instrumental parts (no parentheticals — Suno sings them)
 - Clean lyrics only (no vocalist names, no extra instructions)
 - Phonetic spelling for pronunciation issues
+- Sound effects go in square brackets too (`[footsteps]`, `[rain]`), inline or on a line of their own — never in parentheses, which are sung
 
 ### Style Prompt (Style of Music Box)
 
@@ -187,7 +192,7 @@ Exclusions **shift the odds** against an element — probabilistic, not a hard f
 **Rules:**
 - **Max 2–4 items** — over-specification dilutes the effect
 - **Bare elements, never "no"**: `drums`, `electric guitar`, `autotune`. The field is the negation; `no drums` in it is redundant at best, and if the value ever lands in the Style Box it asks *for* drums
-- **Suppressing unwanted group vocals** (a common Suno over-add): `choir`, `crowd vocals`, `backing vocals`, `gang vocals`, `call-and-response`, `vocal harmonies`, `layered vocals` — still probabilistic; pair with a leaner style prompt
+- **Suppressing unwanted group vocals** (a common Suno over-add): pick the one or two that name what you heard, from `choir`, `crowd vocals`, `backing vocals`, `gang vocals`, `call-and-response`, `vocal harmonies`, `layered vocals` (all seven would break the 2–4 limit above) — still probabilistic; pair with a leaner style prompt
 - **Always record them in the track file's Exclude Styles section, even when none apply** — write `### Exclude Styles` followed by `(none)` so downstream tools can confirm the field was considered, not silently skipped. Most tracks land here.
 
 **Auto-populate guidance:** Consider whether genre/instrumentation context implies exclusions:
@@ -249,8 +254,11 @@ Combine up to 3 genres for unique sound:
 ### Wrong Genre Interpretation
 **Fix**: Be more specific with genre
 
-### Song Cuts Off Early
-**Fix**: Add `[Outro]` section tag at end with `[End]`
+### Song Ends Abruptly (stops mid-phrase, no ending)
+**Fix**: Add an `[Outro]` section tag at the end, followed by `[End]`, so Suno writes an ending instead of running out
+
+### Song Is Shorter Than the Target
+**Fix**: `[End]` is a stop signal and will not lengthen anything. Add sections instead (a third verse, a pre-chorus, an instrumental break — the lyric-writer's craft reference has the word budget per duration)
 
 ### Repeating Sections
 **Fix**: Use section tags clearly, vary lyrics in V2
@@ -283,8 +291,8 @@ Check target duration: track Target Duration → album Target Duration → genre
 **How duration affects structure:**
 - **Under 2:00**: 1–2 sections + `[End]`. Minimal tags. Add `"short"` or `"concise"` in style prompt. Good for title screens, cutscenes, interludes.
 - **Under 3:00**: 2 verses max, short bridge, no extended instrumentals
-- **3:00–5:00**: Standard structure, no special modifications
-- **Over 5:00**: 3+ verses, pre-chorus, bridge, 1-2 instrumental sections, consider
+- **3:00–5:00**: Standard structure as the lyric-writer delivers it: 2–3 verses, chorus, bridge, and often a pre-chorus or one instrumental break to reach 3:30+. Leave it as written
+- **Over 5:00**: 3+ verses, pre-chorus, bridge, and 1-2 instrumental sections on top of that, consider
   "extended" or "epic" in style prompt. Note: Suno max 8 minutes (Auto/Extend); the Duration slider's Custom range tops out at 6:00.
 
 **Duration control tips (especially for instrumentals/OSTs):**
@@ -340,11 +348,11 @@ All detailed Suno documentation in `${CLAUDE_PLUGIN_ROOT}/reference/suno/`:
 As the Suno engineer, you:
 1. **Receive track concept** - From lyric-writer or track file
 2. **Check duration target** - Track Target Duration → album Target Duration → genre default
-3. **Check artist persona** - Review saved voice profile (if applicable)
+3. **Check for a saved voice** - Read the album README's **Suno Voice** entry and the track's Cover / Voice Setup block. With a Voice or Custom Model, the Style Box drops gender and register (see § Suno is Literal)
 4. **Select genre** - Choose appropriate genre tags
 5. **Define vocals** - Specify voice type, delivery, energy. Pull a concrete texture/style descriptor from `${CLAUDE_PLUGIN_ROOT}/reference/suno/voice-tags.md` (Vocal Style Tags, Vocal Texture Tags, Production/Vocal FX Descriptors) instead of a generic "male vocal, rock" — e.g. "gravelly, belting" beats "powerful"
 6. **Choose instruments** - Select key instruments and sonic texture. Match to genre using `${CLAUDE_PLUGIN_ROOT}/reference/suno/instrumental-tags.md` § Genre-Specific Instruments (2-3 key instruments, not a full list — every instrument should earn its place)
-7. **Check for sound effects/atmosphere** - If the lyrics reference rain, footsteps, crowds, laughter, or similar, add matching tags per `${CLAUDE_PLUGIN_ROOT}/reference/suno/best-practices.md` § Sound Effects / Atmospheric Effects (mention in both Lyrics Box and Style Prompt for atmospheric/environmental sounds)
+7. **Check for sound effects/atmosphere** - If the lyrics reference rain, footsteps, crowds, laughter, or similar, add matching tags per `${CLAUDE_PLUGIN_ROOT}/reference/suno/best-practices.md` § Sound Effects / Atmospheric Effects (for atmospheric/environmental sounds, a square-bracket tag such as `[rain]` in the Lyrics Box and a mention in the Style Prompt; never a parenthetical, which Suno sings)
 8. **Add Performance Cues** - Append a brief cue phrase (a word or two) to each structure tag in the Lyrics Box (`[Verse 1 - cold regal]`, `[Bridge - raw breaking]`) so the emotional arc plays out section-by-section, per `${CLAUDE_PLUGIN_ROOT}/reference/suno/structure-tags.md` § Performance Cues — do this by default, not only when a track "seems to need it"
 9. **Choose model and settings** - Fill the Generation Settings table per § Generation Settings: model from the catalog, Variety Off, Max Mode by length/cover/Voice, Duration Auto unless a target is set
 10. **Build style prompt** - Assemble final prompt (vocals FIRST), populate Exclude Styles if needed, then review the descriptor mix — collapse synonym-piles so every term adds distinct info (a focused ~10 is fine; trim only real bloat; see § Style Prompt above)
@@ -356,7 +364,7 @@ As the Suno engineer, you:
 
 ## Quality Standards
 
-Only mark track as "Generated" when output meets:
+These are judged by ear, so they are the user's call: ask what they heard, and never tick them from the prompt alone. Only mark track as "Generated" when output meets:
 - [ ] Vocal clarity and pronunciation
 - [ ] Genre/style matches intent
 - [ ] Emotional tone appropriate
@@ -386,7 +394,7 @@ Suno rewrites them ("We don't reference artists directly, so we've replaced your
 
 ## Updating Reference Docs
 
-When you discover new Suno behavior or techniques, **update the reference documentation**:
+When you discover new Suno behavior or techniques, **update the reference documentation** — after telling the user what you saw and what you would change. One generation is an anecdote: write it as a dated, reported observation, the way `models.md` does, not as a rule. If the plugin is an installed copy rather than a checkout the user maintains, an edit under `${CLAUDE_PLUGIN_ROOT}` is lost on the next update, so put the finding in the user's `suno-preferences.md` override instead.
 
 | File | Update When |
 |------|-------------|

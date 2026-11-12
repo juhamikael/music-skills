@@ -29,6 +29,7 @@ When invoked with a track file path:
 1. Read the track file
 2. Scan existing lyrics for issues (rhyme, prosody, POV, pronunciation)
 3. Report all violations with proposed fixes
+4. Edit the track file once the user approves the fixes — or straight away when the request already asked you to fix or revise the lyrics
 
 When invoked with a concept:
 1. Write lyrics following all quality standards below
@@ -55,7 +56,7 @@ You are a professional lyric writer with expertise in prosody, rhyme craft, and 
 ### Watch Your Rhymes
 - Don't rhyme the same word twice in consecutive lines
 - Don't rhyme a word with itself
-- Avoid near-repeats (mind/mind, time/time)
+- Avoid identity rhymes, where one word sits inside the other (mind/remind, light/delight)
 - Fix lazy patterns proactively
 
 ### Automatic Quality Check (13-Point)
@@ -68,10 +69,10 @@ You are a professional lyric writer with expertise in prosody, rhyme craft, and 
 5. **Source verification**: If source-based, match captured material
 6. **Structure check**: Section tags, verse/chorus contrast, V2 develops
 7. **Flow check**: Syllable counts consistent within verses (tolerance varies by genre), no filler phrases padding lines, no forced rhymes bending grammar.
-8. **Length check**: Word count vs target duration. Check track Target Duration → album Target Duration → genre default (craft-reference.md). Over 400 words (non-hip-hop) or 600 words (hip-hop) hard fail unless target duration is 5:00+. Under 200 words — flag as likely too short and suggest adding sections (3rd verse, pre-chorus, instrumental break).
-9. **Section length check**: Count lines per section, compare against genre limits (see Section Length Limits). **Hard fail** — trim any section that exceeds its genre max before presenting. Trimming strategy: identify redundant or weakest lines first, keep strongest imagery and rhymes, tighten transitions. If narrative, cut middle exposition; if descriptive, cut repeated imagery. Never cut the hook or opening line.
-10. **Rhyme scheme check**: Verify rhyme scheme matches the genre (see Default Rhyme Schemes by Genre). No orphan lines, no random scheme switches mid-verse. Read each rhyming pair aloud.
-11. **Density/pacing check (Suno)**: Check verse line count against genre README's `Density/pacing (Suno)` default. Cross-reference BPM/mood from Musical Direction. **Hard fail** — trim or split any verse exceeding the genre's max before presenting.
+8. **Length check**: Word count vs target duration. Check track Target Duration → album Target Duration → genre default (craft-reference.md). Over 400 words (non-hip-hop) or 600 words (hip-hop) hard fail unless target duration is 5:00+. Under the target's minimum (the `min` that `get_lyrics_stats` reports; 220 words for the default duration, 150 for punk, 50 for ambient) — flag as likely too short and suggest adding sections (3rd verse, pre-chorus, instrumental break).
+9. **Section length check**: Count lines per section, compare against genre limits (see Section Length Limits). For verses, the genre README's `Density/pacing (Suno)` line is the limit when it has one (check 11); the craft-reference tables cover the other sections, and verses only when the README says nothing. **Hard fail** — fix any section that exceeds its genre max before presenting: split a verse in two when the word budget allows and each half holds a complete thought, otherwise trim. Trimming strategy: identify redundant or weakest lines first, keep strongest imagery and rhymes, tighten transitions. If narrative, cut middle exposition; if descriptive, cut repeated imagery. Never cut the hook or opening line.
+10. **Rhyme scheme check**: Verify rhyme scheme matches the genre (see craft-reference.md → "Rhyme Schemes by Genre — Quick Reference"). No orphan lines, no random scheme switches mid-verse. Read each rhyming pair aloud.
+11. **Density/pacing check (Suno)**: Check verse line count against genre README's `Density/pacing (Suno)` default. Cross-reference BPM/mood from Musical Direction. The README line gives the limit for the track's tempo (hip-hop: 8 lines at 85-95 BPM, 6 below 85); when it and a craft-reference table disagree, the README wins. **Hard fail** — split or trim any verse exceeding that limit before presenting, the same way as in check 9.
 12. **Verse-chorus echo check**: Compare last 2 lines of every verse against first 2 lines of the following chorus. Flag exact phrases, shared rhyme words, restated hooks, or shared signature imagery. Check ALL verse-to-chorus and bridge-to-chorus transitions.
 13. **Pitfalls check**: Run through checklist
 
@@ -132,7 +133,7 @@ See [craft-reference.md](craft-reference.md) → "Refinement Pass Reference" for
 
 **Rules:**
 - **Preserve voice** — refinement polishes word choice and density. Tone, register, personality, and narrative beats stay exactly as the draft left them.
-- **Refine within the existing canvas** — passes tighten and sharpen what's already on the page. New metaphors, characters, or narrative beats are out of scope for refinement; if the draft genuinely needs new content, that's a writing task, not a refinement task.
+- **Refine within the existing canvas** — passes tighten and sharpen what's already on the page. Swapping a weak image for a stronger one that says the same thing is in scope (Pass 2 exists for that); a new idea, character, event or narrative beat is not — if the draft genuinely needs new content, that's a writing task, not a refinement task. On documentary tracks a sharper detail must come from the sources, never from imagination.
 - **Respect hard limits** — section length, word count, and genre constraints still apply after each pass.
 - **Respect override preferences** — if the user's lyric-writing-guide.md specifies style preferences, those take precedence during refinement.
 
@@ -243,7 +244,7 @@ Flag any of these overlaps:
 
 **Red flags:**
 - Last line of verse contains ANY phrase from the chorus first line
-- A signature chorus word (the hook word) appears anywhere in the preceding verse
+- A signature chorus word (the hook word), or another form of it (start/started), appears in the last 2 lines of the preceding verse
 - The verse "gives away" the chorus before it hits
 
 **Fix:**
@@ -268,7 +269,7 @@ Good:
 ## Hook & Title Placement
 
 - Title in first or last line of chorus
-- Repeat title at song's beginning AND end
+- Repeat title at song's beginning AND end (a title in the song's opening line is not a verse-chorus echo: that check covers only the two lines before a chorus)
 - Give title priority: rhythmic accent, melodic peak
 
 ---
@@ -302,9 +303,9 @@ Before finalizing:
 - [ ] Predictable rhymes (moon/June, fire/desire)
 - [ ] Pronoun inconsistency
 - [ ] Tense jumping without reason
-- [ ] Too specific (alienating names/places)
+- [ ] Too specific (names/places the listener cannot know and the song never explains — documentary tracks are exempt: there the real names and places are the point)
 - [ ] Too vague (abstractions without imagery)
-- [ ] Twin verses (V2 = V1 reworded — V2 must advance the story, deepen emotion, or shift perspective, not just rephrase V1. Example: V1 "Streets are cold, I walk alone" → bad V2 "Roads are freezing, I'm by myself" (same idea reworded) → good V2 "Found your old coat in the closet / Still smells like smoke and home" (new detail, emotional shift))
+- [ ] Twin verses (V2 = V1 reworded — V2 must advance the story, deepen emotion, or shift perspective, not just rephrase V1. Example: V1 "Streets are cold, I walk alone" → bad V2 "Roads are freezing, I'm by myself" (same idea reworded) → good V2 "Your old coat's hanging by the door / Still smells like smoke from years before" (new detail, emotional shift))
 - [ ] No hook
 - [ ] Disingenuous voice
 - [ ] Section too long for genre (check Section Length Limits table)
@@ -313,8 +314,8 @@ Before finalizing:
 - [ ] Filler phrases padding lines for rhyme or quote setup
 - [ ] Inconsistent syllable counts within a verse (tolerance varies by genre)
 - [ ] Verse exceeds Suno line limit for genre (check genre README's Density/pacing default)
-- [ ] 8-line verse at BPM under 100 (too dense for Suno — split or trim)
-- [ ] Too many proper nouns in a single verse (max 3 introductions per verse)
+- [ ] 8-line verse at BPM under 100 in a sung genre (too dense for Suno — split or trim; rap follows its genre README instead, which allows 8 lines at 85-95 BPM)
+- [ ] Too many proper nouns in a single verse (max 3 introductions per verse; on a documentary track spread the names over more verses rather than dropping them)
 - [ ] Density mismatch (Musical Direction says "laid back" but verses are packed)
 - [ ] Verse-chorus echo (verse repeats chorus phrase, rhyme word, hook, or signature imagery)
 - [ ] Invented contractions (signal'd, TV'd — Suno only handles standard pronoun/auxiliary contractions)
@@ -331,7 +332,8 @@ Before finalizing:
 | Names | Ramos, Sinaloa | Rah-mohs, Sin-ah-lo-ah |
 | Acronyms | GPS, FBI | G-P-S, F-B-I |
 | Tech terms | Linux, SQL | Lin-ucks, sequel |
-| Numbers | ninety-three | '93 |
+| Numbers | 21, 1984 | twenty-one, nineteen eighty-four |
+| Years, short form | ninety-three | '93 (the one exception to spelling numbers out: the written word trips Suno's producer-tag filter) |
 | Homographs | live (verb) | lyve or liv |
 
 ### Homograph Handling (Suno Pronunciation)
@@ -347,7 +349,7 @@ lyric-writer (FLAGS) → pronunciation-specialist (RESOLVES) → lyric-reviewer 
 
 **Your role as writer — flag, batch-ask, apply:**
 1. **Identify**: Flag every homograph in the lyrics during phonetic review (use the table below as a baseline; it is not exhaustive).
-2. **Batch-ask**: When a track contains multiple homographs, present them in a single user message — numbered list with both pronunciation options per word — and accept all decisions in one user reply. Per-word back-and-forth balloons the conversation and breaks flow.
+2. **Batch-ask**: When a track contains multiple homographs, present them in a single user message — numbered list with both pronunciation options per word — and accept all decisions in one user reply. Per-word back-and-forth balloons the conversation and breaks flow. Ask once, when you present the lyrics after the quality check and refinement passes — not in the middle of drafting. Until the user answers, the Suno Lyrics Box is not final and the track is not handed to suno-engineer.
 3. **Apply**: Replace with phonetic spelling in Suno lyric lines only. Streaming/distributor lyrics keep standard English spelling.
 4. **Document**: Add each resolved homograph to the track's Pronunciation Notes table with the user's chosen reading.
 
@@ -416,7 +418,8 @@ WRONG:   Pronunciation Table: Potrero → poh-TREH-roh
          Suno Lyrics: "Potrero Hill, industrial..."
 
 CORRECT: Pronunciation Table: Potrero → poh-TREH-roh
-         Suno Lyrics: "poh-TREH-roh Hill, in-DUST-ree-ul..."
+         Suno Lyrics: "poh-TREH-roh Hill, industrial..."
+         (only the tabled word changes; ordinary words keep their spelling)
 ```
 
 ---
@@ -427,10 +430,10 @@ For true crime/documentary tracks, see [documentary-standards.md](documentary-st
 
 **The Five Rules:**
 1. **Third-person narrator only** — render the story from outside the subject; the narrator describes, not impersonates.
-2. **Quote only what's in the source record** — verbatim, with citation. Anything in quotation marks must be traceable to testimony, transcript, or recorded statement.
-3. **Internal states require testimony** — render thoughts, feelings, or motivations only when a source (interview, statement, court record) supports them.
+2. **Quote only what's in the source record** — verbatim, with the source recorded in the track file (the citation lives there, not in the lyric). Anything in quotation marks must be traceable to testimony, transcript, or recorded statement.
+3. **Internal states require testimony** — render thoughts, feelings, or motivations only when a source (interview, statement, court record) supports them, and attribute them in the line ("she testified she was afraid", not "she was afraid").
 4. **Actions must be in the record** — render only events that appear in the source material; no invented beats, no implied scenes.
-5. **Confine factual claims to what sources affirm** — absence of evidence is not a claim. "Nobody saw" needs a source asserting that, not a gap in the record.
+5. **Confine factual claims to what sources affirm** — absence of evidence is not a claim. "Nobody saw" needs a source asserting that, not a gap in the record. Keep an accusation apart from a finding: someone charged or sued is "charged with" or "accused of" until a verdict or judgment says otherwise, and the lyric says who made the claim.
 
 ---
 
@@ -498,7 +501,7 @@ Activate when **all** of these are true:
 - Factual inaccuracies
 - Pronunciation risks
 
-Report all issues with proposed fixes, then proceed.
+Report all issues with proposed fixes, then apply the ones the user approves (see "Vocal Track Workflow" for when to edit without waiting).
 
 ---
 

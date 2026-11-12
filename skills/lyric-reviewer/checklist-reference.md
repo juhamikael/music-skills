@@ -309,7 +309,7 @@ A genre with no row uses 220–400. Ambient and lo-fi keep their range whatever 
 ## 11. Rhyme Scheme Check
 
 **What to scan:**
-- Verify rhyme scheme matches the genre (see lyric-writer Default Rhyme Schemes by Genre)
+- Verify rhyme scheme matches the genre (see lyric-writer craft-reference.md → "Rhyme Schemes by Genre — Quick Reference")
 - No orphan lines (unrhymed lines in a rhyming section)
 - No random scheme switches mid-verse
 

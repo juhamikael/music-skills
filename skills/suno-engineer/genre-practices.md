@@ -1,20 +1,22 @@
 # Genre-Specific Best Practices
 
-Detailed prompting strategies for each major genre.
+Detailed prompting strategies for five common genre families. For any other genre, and for subgenre detail on these, read `${CLAUDE_PLUGIN_ROOT}/genres/[genre]/README.md` → "Suno Prompt Keywords"; every genre the plugin knows has one.
+
+The Exclude Styles tables list candidates. Use one only when the track's arrangement really is the one named, check it against the Style Box (an exclusion must not name something the prompt asks for), and keep to the 2–4 item limit.
 
 ---
 
 ## Hip-Hop
 
 **Vocals**: Clear enunciation, rhythmic delivery, confident
-**Beat**: Specific drum sounds (808 kick, crisp snare)
+**Beat**: Specific drum sounds, matched to the style (sampled breaks and crisp snare for boom-bap; 808 kick and fast hi-hats for trap)
 **Tempo**: 70-100 BPM for laid-back, 100-140 for energetic
 **Production**: Vocal upfront, beat as foundation
 
 **Example prompt**:
 ```
 Male rapper, clear delivery, storytelling flow. Boom-bap hip-hop,
-808 kick, vinyl crackle, dusty samples. Lo-fi production.
+sampled drum break, vinyl crackle, dusty piano loop. Warm, unpolished mix.
 ```
 
 **Key instruments**:
@@ -84,9 +86,11 @@ Atmospheric production, spacious reverb.
 
 | Arrangement | Exclusions |
 |-------------|------------|
-| Ambient | `drums, vocals` |
-| Minimal | `vocals, acoustic instruments` |
+| Ambient | `drums, electric guitar` |
+| Minimal | `acoustic instruments, live drums` |
 | Downtempo | `live drums, electric guitar` |
+
+For a track with no singing, set `Instrumental: On` rather than excluding `vocals`: an exclusion only shifts the odds, and on a track with lyrics it works against the Lyrics Box.
 
 ---
 
@@ -141,9 +145,11 @@ steel guitar, acoustic rhythm, walking bass. Classic Nashville production.
 
 | Arrangement | Exclusions |
 |-------------|------------|
-| Traditional | `electric instruments, synths` |
-| Acoustic | `drums, electric instruments` |
+| Traditional | `synths, drum machine` |
+| Acoustic | `drums, electric guitar` |
 | Bluegrass | `drums, electric guitar, synths` |
+
+Don't exclude `electric instruments` from a country prompt that asks for steel guitar: pedal steel is one, and the exclusion pulls against the prompt.
 
 ---
 
@@ -199,7 +205,7 @@ steel guitar, acoustic rhythm, walking bass. Classic Nashville production.
 
 ## Artist Name Warning
 
-**NEVER use real artist names in Suno style prompts** - Suno blocks them.
+**NEVER use real artist names in Suno style prompts** - Suno rewrites them into styles of its own choosing, and the plugin's Artist Names gate blocks the track before that. Full list with alternatives: `${CLAUDE_PLUGIN_ROOT}/reference/suno/artist-blocklist.md`.
 
 Instead, describe the artist's style:
 

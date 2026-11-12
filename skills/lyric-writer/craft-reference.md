@@ -14,7 +14,7 @@ Read by the lyric-writer when specific craft guidance is needed.
 | Slant/Near | Similar but not exact | love/move |
 | Consonance | Same ending consonants | blank/think |
 | Assonance | Same vowel sounds | lake/fate |
-| Internal | Rhymes within a line | "fire and desire higher" |
+| Internal | Rhymes within a line | "the late train shakes the window pane" |
 
 ### Rhyme Scheme Patterns
 | Pattern | Effect |
@@ -26,7 +26,7 @@ Read by the lyric-writer when specific craft guidance is needed.
 
 ### Rhyme Schemes by Genre — Quick Reference
 
-**There is no universal default.** Each genre has its own conventions documented in `genres/[genre]/README.md` under "Lyric Conventions." Always read the genre README before writing.
+**There is no universal default.** Each genre has its own conventions documented in `${CLAUDE_PLUGIN_ROOT}/genres/[genre]/README.md` under "Lyric Conventions." Always read the genre README before writing.
 
 | Genre Family | Default Scheme | Rhyme Strictness | Key Difference |
 |---|---|---|---|
@@ -43,12 +43,12 @@ Read by the lyric-writer when specific craft guidance is needed.
 | **R&B / Soul** | Flexible | Low — emotion first | Leave space for melisma and vocal runs |
 | **Funk** | Minimal | Very low | Groove lock; lyrics accent the downbeat |
 | **Gospel** | Repetitive build | Low | Call-and-response; repetition builds intensity |
-| **Jazz** | AABA (32-bar) | Sophisticated | Internal rhyme, wordplay; phrasing behind/ahead of beat |
+| **Jazz** | Varies by tune (AABA is the 32-bar song form, not a rhyme scheme) | Sophisticated | Internal rhyme, wordplay; phrasing behind/ahead of beat |
 | **Reggae / Dancehall** | Riddim-driven | Moderate | Groove lock; audience participation by design |
 | **Afrobeats** | Call-and-response | Low | Code-switching (English/Pidgin/local languages) |
 | **Ballad (any)** | ABCB or ABAB | Moderate | Emotion and narrative serve the story |
 
-**How to use**: Before writing lyrics, read `genres/[genre]/README.md` → "Lyric Conventions" section for the specific genre's rules on rhyme scheme, rhyme quality, verse structure, and what to avoid.
+**How to use**: Before writing lyrics, read `${CLAUDE_PLUGIN_ROOT}/genres/[genre]/README.md` → "Lyric Conventions" section for the specific genre's rules on rhyme scheme, rhyme quality, verse structure, and what to avoid.
 
 ### Rhyme Quality Standards (All Genres)
 
@@ -56,7 +56,7 @@ These apply universally regardless of genre:
 
 - **Forced rhymes** are NEVER acceptable — never bend grammar, invent words, or use filler phrases just to land a rhyme
 - **No self-rhymes** — never rhyme a word with itself
-- **No lazy repeats** — avoid rhyming near-identical words (mind/mind, time/time)
+- **No identity rhymes** — avoid rhyming a word with one that contains it (mind/remind, light/delight)
 - **Meaning over rhyme** — if a perfect rhyme sounds unnatural, use a near rhyme or restructure the line
 - **Consistency within sections** — whatever rhyme scheme you choose, maintain it through the section. No random switching mid-verse.
 
@@ -85,9 +85,6 @@ Before finalizing any lyrics, verify:
 
 ---
 
-
----
-
 ## Line Length
 
 ### General Ranges by Genre
@@ -106,7 +103,7 @@ Before finalizing any lyrics, verify:
 
 ## Song Length
 
-Songs that are too long (800+ words) cause Suno to rush, compress sections, or skip lyrics. Songs that are too short produce tracks under 3 minutes — fine if intentional, but usually not what users want.
+Songs that run past the targets below (about 400 words, 600 for hip-hop) cause Suno to rush, compress sections, or skip lyrics, and it gets worse the further past they go. Songs that are too short produce tracks under 3 minutes — fine if intentional, but usually not what users want.
 
 ### Default Target Duration
 
@@ -178,133 +175,154 @@ Do NOT write 10-line verses or 8-line choruses — Suno will rush them.
 ### Length Limits
 
 - **If draft exceeds 400 words (non-hip-hop) or 600 words (hip-hop)**: Cut it down before presenting.
-- **If draft is under 200 words**: Flag as "likely too short for target duration (3:30–5:00)" — suggest adding sections.
+- **If draft is under the target's minimum** (the low end of its Target Duration row or genre row above: 220 words by default, 150 for punk, 50 for ambient): Flag as "likely too short for target duration" — suggest adding sections. A fixed 200-word floor would flag every punk and ambient track.
 - Count words after drafting. If over target, remove a verse or trim sections — don't just shorten lines. If under target, add a verse, pre-chorus, or instrumental break.
 
 ### Section Length Limits by Genre
 
-**Why this matters**: Suno rushes, compresses, or skips content when sections are too long. These are hard limits — trim before presenting.
+**Why this matters**: Suno rushes, compresses, or skips content when sections are too long. These are hard limits — fix before presenting.
+
+**Which number applies to a verse**: the genre README's `Density/pacing (Suno)` line (`${CLAUDE_PLUGIN_ROOT}/genres/[genre]/README.md` → Lyric Conventions) is the verse limit, because it is written per genre and per tempo (thrash allows more than metal at large, house far less than electronic at large). The Verse rows below are the family ceiling, used when the README has no such line. The other rows (chorus, bridge, pre-chorus) are the limits for those sections; the READMEs rarely give them.
+
+Every Max Lines value is one number. A section may be shorter; it may not be longer.
 
 #### Hip-Hop / Rap / Trap / Drill / Grime / Phonk / Nerdcore
 
 | Section | Max Lines | Notes |
 |---------|-----------|-------|
-| Verse | 8 | Standard 16-bar verse (each written line ≈ 2 bars) |
-| Chorus / Hook | 4–6 | Shorter hooks hit harder |
-| Bridge | 4–6 | |
-| Pre-Chorus | 2–4 | |
-| Outro | 2–4 | Spoken word / ad-lib sections exempt from limit |
+| Verse | 8 | Suno's ceiling, not the form's: a traditional 16-bar verse is 16 written lines, and Suno rushes past 8. 6 below 85 BPM and for half-time trap |
+| Chorus / Hook | 6 | Shorter hooks hit harder |
+| Bridge | 6 | |
+| Pre-Chorus | 4 | |
+| Outro | 4 | Spoken word / ad-lib sections exempt from limit |
 
 #### Pop / Synth-Pop / Dance-Pop / K-Pop / Piano Pop
 
 | Section | Max Lines | Notes |
 |---------|-----------|-------|
-| Verse | 6–8 | |
-| Chorus | 4–6 | |
+| Verse | 6 | Default 4; 6 only at 100–110 BPM |
+| Chorus | 6 | |
 | Bridge | 4 | |
-| Pre-Chorus | 2–4 | |
+| Pre-Chorus | 4 | |
 
-#### Rock / Alt-Rock / Indie Rock / Grunge / Garage Rock / Post-Rock / Prog Rock
+#### Rock / Alt-Rock / Indie Rock / Grunge / Garage Rock / Post-Rock
 
 | Section | Max Lines | Notes |
 |---------|-----------|-------|
-| Verse | 6–8 | |
-| Chorus | 4–6 | |
+| Verse | 8 | Default 6; 4 above 130 BPM |
+| Chorus | 6 | |
 | Bridge | 4 | |
-| Pre-Chorus | 2–4 | |
+| Pre-Chorus | 4 | |
 | Guitar solo / Interlude | 0 (instrumental) | Use `[Guitar Solo]` or `[Interlude]` tag |
 
-#### Punk / Hardcore Punk / Emo / Pop-Punk / Ska Punk
+#### Progressive Rock
 
 | Section | Max Lines | Notes |
 |---------|-----------|-------|
-| Verse | 4–6 | Short, fast — keep it tight |
-| Chorus | 2–4 | Punchy, shoutable |
-| Bridge | 2–4 | |
+| Verse | 12 | The exception: default 8–10, 12 only at 90–110 BPM, 8 above 130 |
+| Chorus | 6 | |
+| Bridge | 4 | |
+| Pre-Chorus | 4 | |
+
+#### Punk / Hardcore Punk / Pop-Punk / Ska Punk
+
+| Section | Max Lines | Notes |
+|---------|-----------|-------|
+| Verse | 4 | Short, fast — keep it tight. Hardcore: 3. Pop-punk and emo run longer; their READMEs say how much |
+| Chorus | 4 | Punchy, shoutable |
+| Bridge | 4 | |
 | Pre-Chorus | 2 | |
 
 #### Metal / Thrash / Doom / Black Metal / Metalcore / Industrial
 
 | Section | Max Lines | Notes |
 |---------|-----------|-------|
-| Verse | 4–8 | |
-| Chorus | 4–6 | |
+| Verse | 8 | Doom: 6. Thrash: 10, per its README |
+| Chorus | 6 | |
 | Bridge | 4 | |
-| Pre-Chorus | 2–4 | |
-| Breakdown | 2–4 | Often instrumental or minimal lyrics |
+| Pre-Chorus | 4 | |
+| Breakdown | 4 | Often instrumental or minimal lyrics |
 
-#### Country / Folk / Americana / Bluegrass / Singer-Songwriter / Blues
+#### Country / Folk / Americana / Bluegrass / Singer-Songwriter
 
 | Section | Max Lines | Notes |
 |---------|-----------|-------|
-| Verse | 4–8 | Storytelling verses can use the full 8 |
-| Chorus | 4–6 | |
-| Bridge | 2–4 | |
-| Pre-Chorus | 2–4 | |
+| Verse | 8 | Storytelling verses can use the full 8; ballads 4 |
+| Chorus | 6 | |
+| Bridge | 4 | |
+| Pre-Chorus | 4 | |
+
+#### Blues
+
+| Section | Max Lines | Notes |
+|---------|-----------|-------|
+| Verse | 3 | AAB: line 1 stated, line 2 repeats it, line 3 resolves. Never 4 |
+| Chorus / Refrain | 4 | Many blues have none |
+| Bridge | 4 | |
 
 #### Electronic / EDM / House / Techno / Trance / Dubstep / DnB / Synthwave
 
 | Section | Max Lines | Notes |
 |---------|-----------|-------|
-| Verse | 4–6 | Vocals are sparse in electronic — less is more |
-| Chorus / Hook | 2–4 | Often just a repeated phrase |
-| Bridge | 2–4 | |
+| Verse | 6 | Default 4; vocals are sparse in electronic — less is more. House: 2, EDM: 4 |
+| Chorus / Hook | 4 | Often just a repeated phrase |
+| Bridge | 4 | |
 | Drop | 0 (instrumental) | Use `[Drop]` or `[Break]` tag |
 
 #### Ambient / Lo-Fi / Chillwave / Trip-Hop / Vaporwave
 
 | Section | Max Lines | Notes |
 |---------|-----------|-------|
-| Verse | 2–4 | Minimal vocals, atmosphere first |
-| Chorus / Hook | 2–4 | |
+| Verse | 4 | Minimal vocals, atmosphere first. Trip-hop: 6 |
+| Chorus / Hook | 4 | |
 | Bridge | 2 | |
 
 #### R&B / Soul / Funk / Gospel
 
 | Section | Max Lines | Notes |
 |---------|-----------|-------|
-| Verse | 6–8 | |
-| Chorus | 4–6 | |
+| Verse | 8 | Default 6; ballads under 80 BPM: 6 |
+| Chorus | 6 | |
 | Bridge | 4 | |
-| Pre-Chorus | 2–4 | |
+| Pre-Chorus | 4 | |
 | Vamp / Ad-lib | Flexible | Outro vamps are genre-standard |
 
 #### Jazz / Swing / Bossa Nova
 
 | Section | Max Lines | Notes |
 |---------|-----------|-------|
-| Verse | 4–8 | Standard 32-bar form |
-| Chorus | 4–6 | |
-| Bridge | 4–8 | Jazz B-sections can run longer |
+| Verse | 8 | Standard 32-bar form. Bebop: 4 |
+| Chorus | 6 | |
+| Bridge | 8 | Jazz B-sections can run longer |
 
 #### Reggae / Dancehall / Afrobeats
 
 | Section | Max Lines | Notes |
 |---------|-----------|-------|
-| Verse | 4–8 | |
-| Chorus / Hook | 4–6 | |
-| Bridge | 2–4 | |
-| Toast / DJ | 4–8 | Dancehall toasting sections |
+| Verse | 8 | Reggae: 6 |
+| Chorus / Hook | 6 | |
+| Bridge | 4 | |
+| Toast / DJ | 8 | Dancehall toasting sections |
 
 #### Ballad (any genre)
 
 | Section | Max Lines | Notes |
 |---------|-----------|-------|
-| Verse | 4–6 | Slower tempo = fewer lines needed |
-| Chorus | 4–6 | |
-| Bridge | 2–4 | |
+| Verse | 6 | Default 4. Slower tempo = fewer lines needed |
+| Chorus | 6 | |
+| Bridge | 4 | |
 
 ### Section Length Enforcement
 
 **Hard rules — enforce before presenting lyrics:**
 
-1. **Count lines per section** after drafting. Compare against genre table above.
-2. **If a section exceeds its max**: Trim it. Don't ask — cut it down, then present.
+1. **Count lines per section** after drafting. Compare verses against the genre README's `Density/pacing (Suno)` line, and everything else (or a verse with no README line) against the genre table above.
+2. **If a section exceeds its max**: Fix it before presenting, without asking. A verse is **split in two** when the word budget allows and each half holds a complete thought (spread, don't compress); otherwise it is **trimmed**. A chorus, bridge or pre-chorus is trimmed. List what you did in the Refinement Log so the user sees it.
 3. **Hip-hop verse over 8 lines**: Split into two verses or cut. No exceptions.
 4. **Any chorus over 6 lines**: Trim. A long chorus loses its punch and causes Suno to rush.
 5. **Electronic verse over 6 lines**: Cut. Electronic tracks need space, not walls of text.
 6. **Punk sections over limits**: Punk is short and fast. If it's long, it's not punk.
-7. **When unsure about genre**: Use the Pop/Rock defaults (6–8 verse, 4–6 chorus, 4 bridge).
+7. **When unsure about genre**: Write 4-line verses and treat 6 as the verse ceiling, with 6 for a chorus and 4 for a bridge. This is the same default as the BPM table below.
 8. **Also check BPM-aware limits** in the Lyric Density & Pacing section below — a genre may allow 8-line verses at fast tempo but only 4 at slow tempo.
 
 **Suno-specific reasoning**: Long sections cause:
@@ -315,29 +333,26 @@ Do NOT write 10-line verses or 8-line choruses — Suno will rush them.
 
 ---
 
-
----
-
 ## Lyric Density & Pacing (Suno)
 
 Suno rushes through dense verse blocks. Verse length must match tempo and feel. **The slower the BPM, the fewer lines Suno can handle** without rushing, compressing, or skipping.
 
-**Genre-specific Suno verse limits are in each genre's README** under "Lyric Conventions → Density/pacing (Suno)". Always check the genre README for the track you're writing.
+**Genre-specific Suno verse limits are in each genre's README** under "Lyric Conventions → Density/pacing (Suno)". Always check the genre README for the track you're writing: its line is the limit. The table below summarizes the genre families for when there is no README line, and its Max Safe column carries the same numbers as the Verse rows in Section Length Limits.
 
 ### Suno Verse Length Defaults
 
 | Genre Family | Default Lines/Verse | Max Safe | Topics/Verse | Key Rule |
 |---|---|---|---|---|
-| **Hip-Hop / Rap** | 8 (4 couplets) | 8 | 2-3 | Never exceed 8; half-time trap = treat as 65-75 BPM |
-| **Pop** | 4 | 6-8 | 1-2 | Chorus-first — longer verses bury the hook |
+| **Hip-Hop / Rap** | 8 (4 couplets) | 8 | 2-3 | Never exceed 8; 6 below 85 BPM. Half-time trap = treat as 65-75 BPM, so 6 |
+| **Pop** | 4 | 6 | 1-2 | Chorus-first — longer verses bury the hook |
 | **Rock** | 6 | 8 | 2 | 120 BPM sweet spot; guitar riffs need space |
 | **Punk** | 4 | 4 | 1 | Fast, short, every word punches |
 | **Hardcore Punk** | 2-3 | 3 | 1 | Extreme tempo; shouted, minimal |
-| **Metal** | 6-8 | 10 | 2-3 | Vocal delivery compresses syllables; thrash handles most |
+| **Metal** | 6-8 | 8 | 2-3 | Vocal delivery compresses syllables; thrash handles 10 |
 | **Doom Metal** | 4 | 6 | 1 | Slowest metal; each word carries crushing weight |
 | **Country / Folk** | 6 | 8 | 1-2 | Storytelling pace; ballads drop to 4 |
 | **Blues** | 3 (AAB) | 3 | 1 | Rigid structure — never break AAB |
-| **Electronic / EDM** | 2-4 | 4 | 1 | Production is the star; vocals are texture |
+| **Electronic / EDM** | 2-4 | 6 | 1 | Production is the star; vocals are texture |
 | **Ambient / Shoegaze** | 0-2 | 4 | 1 | Often instrumental; vocals are texture |
 | **R&B / Soul** | 6 | 8 | 1-2 | Melisma stretches syllables; groove > density |
 | **Jazz** | 6-8 | 8 | 1-2 | Bebop: 2-4 lines; ballads: 6-8 |
@@ -346,14 +361,14 @@ Suno rushes through dense verse blocks. Verse length must match tempo and feel. 
 
 ### BPM-Aware Limits (Universal Fallback)
 
-When a genre README doesn't specify, use this table:
+When a genre README doesn't specify, use this table. It is written for sung genres; rap follows the Hip-Hop row above instead (8 lines at 85-95 BPM is its normal verse).
 
 | BPM Range | Max Lines/Verse | Topics/Verse | Feel |
 |-----------|----------------|-------------|------|
 | < 80 | 4 | 1-2 | Slow, heavy — fewer lines needed |
-| 80-94 | 4-6 | 1-2 | Laid back, mid-tempo |
-| 94-110 | 6 | 2-3 | Energetic, driving |
-| 110-140 | 6-8 | 2-3 | Standard rock/pop range |
+| 80-93 | 6 | 1-2 | Laid back, mid-tempo — 4 is the comfortable length |
+| 94-109 | 6 | 2-3 | Energetic, driving |
+| 110-139 | 8 | 2-3 | Standard rock/pop range — 6 is the comfortable length |
 | 140+ | 4 | 1 | Fast — short verses, energy over density |
 
 **Default: 4 lines per verse** unless the genre and tempo justify more.
@@ -366,7 +381,7 @@ When a genre README doesn't specify, use this table:
 
 ### Red Flags
 
-- 8-line verse at any BPM under 100 — too dense for Suno
+- 8-line verse under 100 BPM in a sung genre — too dense for Suno (rap is the exception: its README allows 8 lines at 85-95 BPM)
 - Verse reads like a list of names/facts — it's a Wikipedia entry, not a verse
 - Track concept says "laid back" but verses are wall-to-wall syllables
 - More than 3 proper nouns introduced in a single verse
@@ -375,7 +390,7 @@ When a genre README doesn't specify, use this table:
 ### Fix
 
 When a verse is too dense:
-1. **Prefer adding a verse** over cutting content (spread, don't compress)
+1. **Prefer splitting into two verses** over cutting content (spread, don't compress) — as long as the track stays inside its word-count target; when it would not, trim instead
 2. Let each topic have at least a full couplet (2 lines) to land
 3. Re-read with the BPM in mind — can you actually sing/rap this at tempo without rushing?
 
@@ -385,7 +400,7 @@ Streaming lyrics (distributor text) can have longer verse blocks since they aren
 
 ### Process
 
-Before finalizing any track, ASK: "Does the verse length match the BPM and mood described in Musical Direction?" Check the genre README's `Density/pacing (Suno)` line. If the verse exceeds the default, flag it to the user.
+Before finalizing any track, ASK: "Does the verse length match the BPM and mood described in Musical Direction?" Check the genre README's `Density/pacing (Suno)` line. A verse over the genre's **max** is fixed before presenting (see Section Length Enforcement). A verse between the genre's **default** and its max is allowed when the tempo supports it — say so in one line when presenting, so the user can ask for a shorter one.
 
 ---
 
@@ -402,8 +417,8 @@ Remove filler, compress language, eliminate redundancy.
 | Filler phrases | "He stood up and spoke the words" | "He said" | Setup phrases pad lines without adding meaning |
 | Redundant modifiers | "completely destroyed" | "destroyed" | Absolute verbs don't need intensifiers |
 | Passive voice | "The door was opened by her" | "She opened the door" | Active voice is more direct and singable |
-| Pronoun-heavy lines | "He told him that he should go" | "Get out — the message clear" | Ambiguous pronouns weaken imagery |
-| Unnecessary prepositions | "She looked up at the sky above" | "She searched the sky" | Trim directional padding |
+| Pronoun-heavy lines | "He told him that he should go" | "He told his brother to go" | Name one of them — three pronouns leave the listener guessing who is who |
+| Unnecessary prepositions | "She looked up at the sky above" | "She looked at the sky" | Trim directional padding — the sky is already up and above |
 | Throat-clearing openers | "Well, I think that maybe I should" | "I should" | Cut hedging — commit to the statement |
 | Double-saying | "alone and by myself" | "alone" | One expression per idea |
 
@@ -411,15 +426,17 @@ Remove filler, compress language, eliminate redundancy.
 
 Upgrade weak imagery, sharpen sensory detail, replace generic with specific.
 
+The stronger line must say the same thing as the weak one: same moment, same feeling, same fact. A new event, character or idea is a rewrite, not a refinement. On documentary tracks every added detail (a number, a place, an object) has to be in the sources.
+
 | Pattern | Before | After | Why |
 |---------|--------|-------|-----|
 | Generic imagery | "The city at night" | "Neon bleeding on wet asphalt" | Specific images stick; generic ones slide |
 | Abstract emotion | "I felt so lost" | "Couldn't find my keys, my name, my street" | Show the feeling through concrete details |
-| Clichés | "Cold as ice" | "Cold as a landlord's smile" | Fresh comparisons earn attention |
+| Clichés | "Cold as ice" | "Cold as the far side of the bed" | Fresh comparisons earn attention — draw them from the song's own world, here a breakup |
 | Single-sense lines | "The room was dark" (sight only) | "Dark — just the hum of pipes and mildew air" | Multi-sensory lines immerse the listener |
 | Weak verbs | "He went across the room" | "He cut across the room" | Strong verbs carry energy and specificity |
 | Telling emotions | "She was angry" | "Her knuckles white around the glass" | Action reveals emotion without naming it |
-| Vague quantities | "A lot of people came" | "Thirty faces in a room for ten" | Numbers create instant visual scale |
+| Vague quantities | "A lot of people came" | "Thirty faces in a room for ten" | Numbers create instant visual scale (documentary: only a number the sources give) |
 
 ### Pass 3: Flow & Ear
 
@@ -431,7 +448,7 @@ Read-aloud test, smooth transitions, singability at target BPM.
 | Unsingable vowel sequences | "She oughta allow our hour" | "She gave us the hour" | Stacked diphthongs muddy at tempo |
 | Transition bumps | V1 ends reflective → V2 opens aggressive (no bridge) | Add pre-chorus or transitional line | Jarring shifts break the listener's flow |
 | Missing breath points | 12-syllable line with no natural pause | Split at caesura or add a comma break | Singers need air; dense lines get rushed |
-| Stress misalignment | "into the DARK-ness" on a weak beat | "the DARKness CALLS" on strong beats | Stressed syllables must land on downbeats |
+| Stress misalignment | "into the DARK-ness" with DARK on a weak beat | Move the phrase so DARK lands on beat 1 or 3: open the bar with "darkness", or put one pickup syllable in front of it | Stressed syllables must land on strong beats; reorder the words you have before reaching for new ones |
 | Choppy rhythm | "Stop. Go. Wait. No. Run." | "Stop and go — wait, no — run" | Staccato lines need connective tissue to sing |
 | Syllable mismatch | V1 line: 8 syllables, V2 line: 13 syllables | Match within ±2 syllables | Parallel lines should fit the same melodic phrase |
 

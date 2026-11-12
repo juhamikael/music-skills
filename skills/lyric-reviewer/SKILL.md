@@ -122,7 +122,7 @@ lyric-writer (WRITES + SUNO PROMPT) → pronunciation-specialist (RESOLVES) → 
 - **Hard fail**: Any section exceeding its genre max must be flagged for trimming
 
 ### 11. Rhyme Scheme Check
-- Verify rhyme scheme matches the genre (see lyric-writer Default Rhyme Schemes by Genre)
+- Verify rhyme scheme matches the genre (see lyric-writer craft-reference.md → "Rhyme Schemes by Genre — Quick Reference")
 - No orphan lines, no random scheme switches mid-verse
 - **Warning**: Inconsistent scheme within a section, orphan unrhymed line
 
